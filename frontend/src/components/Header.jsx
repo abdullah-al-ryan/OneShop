@@ -9,7 +9,7 @@ const Header = () => {
         <Navbar bg='dark' variant='dark' expand="md" collapseOnSelect>
             <Container>
                 <Navbar.Brand href='/'>
-                  <img src={logo}></img>
+                  <img src={logo} alt='logo is here'></img>
                   ProShop</Navbar.Brand>
                 <Navbar.Toggle aria-controls='basic-navbar-nav'></Navbar.Toggle>
                 <Navbar.Collapse id='basic-navbar-nav'>
