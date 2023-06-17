@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import {  Link, useParams } from 'react-router-dom';
+import {  Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Form,
   Row,
@@ -11,18 +11,29 @@ import {
   Button,
   ListGroupItem,
 } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import Rating from '../components/Rating';
-import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import { addToCart } from '../slices/cartSlice';
 
 const ProductScreen = () => {
 
   const { id: productId } = useParams();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [qty, setQty] = useState(1); // qty is the quantity of the product that we want to add to the cart, we are setting it to 1 by default, we will change it later on the product screen, we will have a select dropdown for the quantity,
 
-  const { data: product, isLoading, error } = useGetProductDetailsQuery(productId); // productId is coming because of the useparams hook
+  const { data: product, isLoading, error } = useGetProductDetailsQuery(productId); // productId is coming because of the use params hook
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty })); // we are dispatching the addToCart action creator, we are passing the product and the quantity
+
+    navigate('/cart'); // we are navigating to the cart screen
+  };
 
 
   return (
@@ -107,6 +118,7 @@ const ProductScreen = () => {
                   className='btn-block'
                   type='button'
                   disabled={product.countInStock === 0}
+                  onClick={addToCartHandler}
                 >
                   Add to Cart
                 </Button>
