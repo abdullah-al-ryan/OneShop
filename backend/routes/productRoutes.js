@@ -9,6 +9,7 @@ router.get(
   asyncHandler(async (req, res) => {
     // We are getting all the products from the database by the find{} empty object method.
     const products = await Product.find({});
+    throw new Error('This is an error');
     res.json(products);
   })
 );
@@ -20,9 +21,11 @@ router.get(
 
     if (product) {
       return res.json(product);
+    } else {
+      // if there is no product, we will return a 404 status code and a message.
+      res.status(404);
+      throw new Error('Resource not found');
     }
-    // if there is no product, we will return a 404 status code and a message.
-    res.status(404).json({ message: 'Product not found' });
   })
 );
 
