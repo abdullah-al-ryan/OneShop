@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Row,
@@ -11,21 +10,13 @@ import {
   ListGroupItem,
 } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import axios from 'axios';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
 
 const ProductScreen = () => {
-  const [product, setProduct] = useState({});
 
   const { id: productId } = useParams();
+  const { data: product, isLoading, error } = useGetProductDetailsQuery(productId); // productId is coming because of the useparams hook
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${productId}`);
-      setProduct(data);
-    };
-
-    fetchProduct();
-  }, [productId]);
 
   return (
     <>
@@ -33,7 +24,12 @@ const ProductScreen = () => {
         Go Back
       </Link>
 
-      <Row>
+      { isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <div>{error?.data?.message || error.error}</div>
+      ) :  (
+        <Row>
         <Col md={5}>
           <Image src={product.image} alt={product.name} fluid />
         </Col>
@@ -90,6 +86,9 @@ const ProductScreen = () => {
           </Card>
         </Col>
       </Row>
+      ) } 
+
+      
     </>
   );
 };
