@@ -1,16 +1,17 @@
 import express from 'express';
-const router = express.Router();
 import {
-    authUser,
-    registerUser,
-    logoutUser,
-    getUserProfile,
-    updateUserProfile,
-    getUsers,
-    getUserByID,
-    deleteUser,
-    updateUser,
-} from '../controllers/productController.js';
+  authUser,
+  registerUser,
+  logoutUser,
+  getUserProfile,
+  updateUserProfile,
+  getUsers,
+  getUserByID,
+  deleteUser,
+  updateUser,
+} from '../controllers/userController.js';
+
+const router = express.Router();
 
 router.route('/').post(registerUser).get(getUsers);
 router.post('/logout', logoutUser);

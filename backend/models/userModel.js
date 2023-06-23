@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import bcrypt from 'bcryptjs';
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -26,6 +28,11 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const user = mongoose.model('User', userSchema);
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password); // enteredPassword is the password that the user entered
+  // this.password is the password of the user
+};
 
-export default user;
+const User = mongoose.model('User', userSchema);
+
+export default User;

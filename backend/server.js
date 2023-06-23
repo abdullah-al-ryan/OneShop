@@ -12,12 +12,17 @@ connectDB(); // connect to MongoDB
 
 const app = express();
 
+//Body parser middleware. These two lines of middleware allow us to accept JSON data in the body.
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
   res.send('Server is ready');
 });
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 
