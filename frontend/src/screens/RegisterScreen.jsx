@@ -37,6 +37,7 @@ const RegisterScreen = () => {
         e.preventDefault();
         if(password !== confirmPassword){
             toast.error('Passwords do not match');
+            return;
         }
         else{
             try{
@@ -53,7 +54,7 @@ const RegisterScreen = () => {
     }
   return (
     <FormContainer>
-        <h1>Register</h1>
+        <h1>Sign Up</h1>
         <Form onSubmit={submitHandler}>
         <Form.Group controlId='name' className='my-3'>
                 <Form.Label>Name</Form.Label>
