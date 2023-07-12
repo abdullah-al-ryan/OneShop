@@ -3,7 +3,7 @@ import { apiSlice } from './apiSlice';
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // We are not fethcing any data from the backend API. We are just sending data to the backend API. So instead of query we are going to use mutation
+    // We are not fetching any data from the backend API. We are just sending data to the backend API. So instead of query we are going to use mutation
     login: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/auth`,
