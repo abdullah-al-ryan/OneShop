@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
   }
   res.status(statusCode).json({
     // we will send the error message to the frontend
-    message,
+    message: message,
     // we will send the stack trace to the frontend if we are in development mode
     stack: process.env.NODE_ENV === 'production' ? null : err.stack,
   });

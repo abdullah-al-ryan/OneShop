@@ -4,7 +4,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
-import {useRegisterMutation} from '../slices/userSlice';
+
+import {useRegisterMutation} from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import {toast} from 'react-toastify';
 
@@ -20,7 +21,7 @@ const RegisterScreen = () => {
 
     const [register, { isLoading }] = useRegisterMutation();
 
-    const { userInfo } = useSelector(state => state.auth);
+    const { userInfo } = useSelector((state) => state.auth);
 
     const {search} = useLocation();
     const sp = new URLSearchParams(search);
@@ -30,13 +31,12 @@ const RegisterScreen = () => {
         if(userInfo) {
             navigate(redirect);
         }
-    }, [userInfo, redirect, navigate]);
+    }, [ navigate, redirect, userInfo]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
         if(password !== confirmPassword){
             toast.error('Passwords do not match');
-            return;
         }
         else{
             try{
@@ -53,12 +53,12 @@ const RegisterScreen = () => {
     }
   return (
     <FormContainer>
-        <h1>Sign In</h1>
+        <h1>Register</h1>
         <Form onSubmit={submitHandler}>
         <Form.Group controlId='name' className='my-3'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
-                    type='text'
+                    type='name'
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}>
@@ -108,7 +108,7 @@ const RegisterScreen = () => {
             </Col>
         </Row>
     </FormContainer>
-  )
-}
+  );
+};
 
 export default RegisterScreen;

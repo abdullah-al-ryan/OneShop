@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import User from '../models/userModel.js';
+import jwt from 'jsonwebtoken';
 import generateToken from '../utils/generateToken.js';
 
 // @desc   Auth user & get token
@@ -121,7 +122,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc   Get all users
-// @route  GET /api/users
+// @route  GET /api/users/:id
 // @access Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
   
