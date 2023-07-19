@@ -7,6 +7,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: PRODUCTS_URL,
       }),
+      providesTags: ['Products'], // this will be used to invalidate the cache  when we create or update a product
       // keep the data for 5 seconds
       keepUnusedDataFor: 5,
     }),
@@ -16,12 +17,22 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    
     createProduct: builder.mutation({
       query: (newProduct) => ({
         url: PRODUCTS_URL,
         method: 'POST',
       }),
       // it will stop from being cached
+      invalidatesTags: ['Products'],
+    }),
+
+    updateProduct: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}`,
+        method: 'PUT',
+        body: data,
+      }),
       invalidatesTags: ['Products'],
     }),
   }),
@@ -31,4 +42,5 @@ export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useCreateProductMutation,
+  useUpdateProductMutation,
 } = productsApiSlice;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
-import { FaTimes, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { toast } from 'react-toastify';
@@ -46,7 +46,7 @@ const ProductListScreen = () => {
         </Row>
 
         {loadingCreate && <Loader />}
-        
+
         {isLoading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
             <>
                 <Table striped hover responsive className='table-sm'>
