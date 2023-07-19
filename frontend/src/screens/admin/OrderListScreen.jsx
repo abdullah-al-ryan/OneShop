@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { useGetOrdersQuery, useDeleteOrderMutation } from '../../slices/ordersApiSlice';
+import { useGetOrdersQuery } from '../../slices/ordersApiSlice';
 
 const OrderListScreen = () => {
   const {data : orders, isLoading, error} = useGetOrdersQuery();

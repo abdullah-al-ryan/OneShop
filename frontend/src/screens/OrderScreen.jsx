@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import { Row, Col, Image, Form, Button, Card, ListGroup } from 'react-bootstrap';
+import { Row, Col, Image, Button, Card, ListGroup } from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPaypalClientIdQuery, useDeliverOrderMutation } from '../slices/ordersApiSlice';
