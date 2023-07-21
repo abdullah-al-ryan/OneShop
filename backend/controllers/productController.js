@@ -5,7 +5,7 @@ import Product from '../models/productModel.js';
 // @route  GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 8; // number of products to show per page
+  const pageSize = process.env.PAGINATION_LIMIT; // number of products to show per page
   const page = Number(req.query.pageNumber) || 1;
 
   // get the keyword from the query string, if it doesn't exist, set it to an empty object
