@@ -6,5 +6,5 @@ E-commerce Platform on MERN Stack with React, Redux, Node, Express & MongoDB.
 *Product Rating & Review System
 *Product Search, Carousel, Pagination
 
-# Admin Email: admin@email.com
-# Admin password: abc123
+# admin email: admin@email.com
+# admin password: 123456
