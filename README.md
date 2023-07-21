@@ -1,5 +1,5 @@
 # PioneerGoods
-E-commerce Platform on MERN Stack with React, React-Bootstrap, Redux, Node, Express & MongoDB.  
+E-commerce Platform on MERN Stack with <b> React, React-Bootstrap, Redux, Node, Express & MongoDB </b>.  
 *JWT Authentication stored in HTTP-Only Cookie    
 *PayPal/Credit/Debit payments <br>
 *Admin area to manage customers, products & orders    
